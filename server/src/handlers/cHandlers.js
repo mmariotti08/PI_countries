@@ -1,4 +1,4 @@
-const {Country}= require('../db.js')
+const {Country, Activity}= require('../db.js')
 const {Op} = require('sequelize')
 
 
@@ -32,25 +32,26 @@ const {name} = req.query;
 ///////////////////////////////////////////////////////////////////
 
 
-const getIdCountries = async (req,res)=>{
-    
-    const{id}=req.params;
-   try {
-     const country = await Country.findAll({
-        where:{
-            id: id
-        }
-     });
+const getIdCountries = async (req, res) => {
+  const { id } = req.params;
 
-     if(!country){
-        return res.status(404).json({error: 'The country was not found' })
-     }
-     res.json(country)
-   } catch (error) {
-    res.status(500).json({error: `Error getting country from ID:${id}`})
-   }
-}
+  try {
+    const country = await Country.findByPk(id, {
+      include: {
+        model: Activity,
+        through: { attributes: [] }, // Excluye los atributos de la tabla de unión
+      },
+    });
 
+    if (!country) {
+      return res.status(404).json({ error: 'The country was not found' });
+    }
+
+    res.json(country);
+  } catch (error) {
+    res.status(500).json({ error: `Error getting country from ID:${id}` });
+  }
+};
 module.exports = {
     getCountries,
     getIdCountries
