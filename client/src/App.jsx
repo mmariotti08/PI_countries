@@ -16,7 +16,7 @@ const location = useLocation()
       <Routes>
         <Route  exact path="/" element={<Landing/>} /> 
         <Route path="/home" element={<Home/>} /> 
-        <Route path="/detail" element={<Detail/>} /> 
+        <Route path="/countries/:id" element={<Detail/>} /> 
         <Route path="/create" element={<Form/>} /> 
       </Routes>
      </div>

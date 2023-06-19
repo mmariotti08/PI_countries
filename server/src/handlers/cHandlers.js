@@ -19,7 +19,12 @@ const {name} = req.query;
         return res.status(404).json({error:'the country you are looking for was not found'});
     }
     }else{
-        countries = await Country.findAll();
+        countries = await Country.findAll({
+          include: {
+            model: Activity,
+            through: { attributes: [] },
+          },
+        });
     }
     
     res.status(200).json(countries);
@@ -39,7 +44,7 @@ const getIdCountries = async (req, res) => {
     const country = await Country.findByPk(id, {
       include: {
         model: Activity,
-        through: { attributes: [] }, // Excluye los atributos de la tabla de unión
+        through: { attributes: [] },
       },
     });
 
