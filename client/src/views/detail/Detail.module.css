@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: aquamarine;
+    padding: 20px;
+  }
+  
+  .card {
+    width: 80%;
+    max-width: 500px;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .card h3 {
+    font-family: Impact, sans-serif;
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  .card p {
+    text-align: center;
+    margin: 5px 0;
+  }
+  
+  .no-activities {
+    font-family: Impact, sans-serif;
+    text-align: center;
+  }
+  
+  .hr-divider {
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+  }
