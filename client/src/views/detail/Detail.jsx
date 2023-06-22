@@ -37,7 +37,7 @@ const Detail = () => {
         <h3>POPULATION: {country.population}</h3>
       </div>
       <hr className={styles["hr-divider"]} />
-      <div>
+      <div className={styles["activities"]}>
         {activities?.length > 0 ? (
           activities?.map((act) => {
             return (

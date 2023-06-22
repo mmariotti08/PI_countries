@@ -37,10 +37,18 @@
   .no-activities {
     font-family: Impact, sans-serif;
     text-align: center;
+    
   }
   
   .hr-divider {
     margin: 10px 0;
     border: none;
     border-top: 1px solid #ccc;
+  }
+  .activities{
+    display: flex;
+    flex-wrap: wrap;
+  
+    padding: 20px;
+    gap: 1.5cm;
   }
