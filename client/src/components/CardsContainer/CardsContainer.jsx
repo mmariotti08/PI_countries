@@ -5,6 +5,10 @@ import { useSelector } from "react-redux";
 
 const CardsContainer = () => {
   const countries = useSelector((state) => state.countries);
+  
+ 
+  
+
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
 

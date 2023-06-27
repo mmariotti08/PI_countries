@@ -3,7 +3,12 @@ const {Country, Activity}= require('../db.js')
 
 const getActivities = async (req, res)=>{
     try {
-        const activities = await Activity.findAll();
+        const activities = await Activity.findAll( {
+            include:{
+            model: Country,
+            through: { attributes: [] },
+          },
+    });
     
         res.json(activities);
       } catch (error) {

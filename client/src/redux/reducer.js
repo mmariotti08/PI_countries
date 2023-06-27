@@ -13,19 +13,23 @@ const rootReducer=(state= initialState, action)=>{
     switch(action.type){
 
         case BY_ORDER_ACTIVITIES:
-            const allActivities = state.allActivities;
-            const activitiesF = action.payload === 'all' ? allActivities.filter(a => a.activities.length > 0) :
-            allActivities.filter(a => a.activities.find((e)=>e.name.toLowerCase() === action.payload))
-            
-            return{
-                ...state,
-                countries: activitiesF
-            }
+        const allActivities = state.allActivities;
+        const activitiesF =
+            action.payload === 'all'
+            ? allActivities.filter((a) => a.Activities.length > 0)
+            : allActivities.filter((e) =>
+                e.Activities.find((elem) => elem.name.toLowerCase() === action.payload.toLowerCase())
+                );
+        return {
+            ...state,
+            countries: activitiesF,
+        };
             
         case GET_ACTVITY:
+         
             return{
                 ...state,
-                allActivities: action.payload
+                activities: action.payload
             }
 
         case BY_ORDER_CONTINENT:
@@ -92,7 +96,7 @@ const rootReducer=(state= initialState, action)=>{
         case GET_DETAIL:
             return{...state, countryDetail: action.payload}
         case GET_COUNTRIES:
-            return{...state, countries: action.payload, allContinents: action.payload, allActivities: action.payload, activities: action.payload}
+            return{...state, countries: action.payload, allContinents: action.payload, allActivities: action.payload, }
         default:
             return{...state}
     }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createActivity } from "../../redux/actions";
 import styles from "./Form.module.css"
+import validation from "./validation";
 
 const Form = ()=>{
 const dispatch = useDispatch();
@@ -14,6 +15,9 @@ const countries = useSelector(state => state.countries).sort((a,b)=>{
     }
     return 0;
 })
+const [error, setError] = useState({
+    name:''
+});
 
 const [input, setInput]=useState({
     name:'',
@@ -28,6 +32,7 @@ const handleName = (e)=>{
         ...input,
         name: e.target.value
     })
+    validation({...input, name: e.target.value}, error, setError)
 };
 const handleSeson = (e)=>{
     setInput({
@@ -61,8 +66,13 @@ const deleteCountry = (e)=>{
     })
 };
 const handleSumbit = (e)=>{
+   if(!error.name){
     e.preventDefault();
     dispatch(createActivity(input))
+   }else{
+    alert("LOS DATOS INGRESADOS NO SON VALIDOS")
+   }
+
 }
 
 
@@ -74,11 +84,13 @@ const difficulty = [1, 2, 3, 4, 5];
 const duration = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
     return(
         <div className={styles.container}>
+            <div className={styles.background}>
             <h1>CREATE ACTIVITY</h1>
             <form onSubmit={handleSumbit}>
                 <div>
                     <label>ACTIVITY</label>
                     <input required type="text" value={input.name} name="name"  onChange={handleName} placeholder="Activity name..."/>
+                    <p>{error.name}</p>
                 </div>
                 <div>
                     <label>SEASON</label>
@@ -128,6 +140,7 @@ const duration = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
                 </div>
                 <button type="sumbit">ADD ACTIVITY</button>
             </form>
+            </div>
         </div>
     )
 }

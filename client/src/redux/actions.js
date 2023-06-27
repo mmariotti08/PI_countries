@@ -14,18 +14,24 @@ export const BY_ORDER_ACTIVITIES="BY_ORDER_ACTIVITIES"
 
 export const getActivity =()=>{
      return async function(dispatch){
-        const{data}= await axios.get(`${URL}${ACTIVITIES}`);
-        return dispatch({
+        const actData = await axios.get(`http://localhost:3001/activities`);
+         const act = actData.data
+        console.log(act);
+
+         
+         dispatch({
            type: GET_ACTVITY,
-           payload: data
+           payload: act
         })
      }};
+    
 export const getCountries = () =>{
    return async function(dispatch){
      
       const dbData = await axios.get(`${URL}${COUNTRIES}`);
-      
       const countries = dbData.data;
+    
+      
         dispatch({type: GET_COUNTRIES, payload: countries});
     };
  };
@@ -75,17 +81,17 @@ export const getCountries = () =>{
 
  };
 
- export const byOrderActivities=(payload)=>{
-   
-   return{
-      type:BY_ORDER_ACTIVITIES, 
-      payload:payload
-   }
+ export const byOrderActivities = (activityName) => {
+   return {
+     type: BY_ORDER_ACTIVITIES,
+     payload: activityName,
+   };
  };
 
  export const createActivity=(payload)=>{
    return async function(){
       const act = await axios.post(`http://localhost:3001/activities`, payload)
+  
       return act;
    }
  }
